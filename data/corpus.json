@@ -1,0 +1,9 @@
+[
+  { "id": "Q01", "texto": "dor no peito e falta de ar há 2 dias", "categoria": "Cardiologia" },
+  { "id": "Q02", "texto": "palpitação forte e tontura ao levantar", "categoria": "Cardiologia" },
+  { "id": "Q03", "texto": "dor no joelho ao caminhar e subir escada", "categoria": "Ortopedia" },
+  { "id": "Q04", "texto": "fraturei o braço depois de uma queda", "categoria": "Ortopedia" },
+  { "id": "Q05", "texto": "dor de cabeça forte e visão embaçada", "categoria": "Neurologia" },
+  { "id": "Q06", "texto": "dor no peito e inchaço no joelho", "categoria": null },
+  { "id": "Q07", "texto": "formigamento na mão direita há semanas", "categoria": null }
+]
