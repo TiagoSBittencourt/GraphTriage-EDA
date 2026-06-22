@@ -10,7 +10,7 @@ STOPWORDS = {
     "por", "para", "com", "sem", "sobre", "entre",
 
     # conjunções
-    "e", "ou", "mas", "porque", "pois", "que", "se", "ao"
+    "e", "ou", "mas", "porque", "pois", "que", "se", "ao",
 
     # pronomes comuns
     "eu", "tu", "ele", "ela", "eles", "elas",
