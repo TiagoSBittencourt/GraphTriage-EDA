@@ -1,32 +1,68 @@
-"""
-Módulo de pré-processamento de texto.
-Issue: #2
-"""
-
-STOPWORDS = {
-    "a", "ao", "aos", "as", "com", "da", "das", "de", "do", "dos",
-    "e", "em", "há", "na", "nas", "no", "nos", "o", "os", "para",
-    "por", "que", "se", "um", "uma", "após", "desde",
-}
-
-SUFIXOS = ["amento", "ção", "ções", "mente", "ando", "endo", "indo",
-           "ado", "ido", "ar", "er", "ir", "dor", "dora"]
+import re
+from src.stopwords import STOPWORDS
 
 
-def _stemmer(token: str) -> str:
-    for sufixo in sorted(SUFIXOS, key=len, reverse=True):
-        if token.endswith(sufixo) and len(token) - len(sufixo) >= 3:
-            return token[: -len(sufixo)]
+# -------------------------
+# Tokenização
+# -------------------------
+def tokenizar(texto: str) -> list[str]:
+    texto = texto.lower()
+    return re.findall(r"\b\w+\b", texto)
+
+
+# -------------------------
+# Stopwords
+# -------------------------
+def remover_stopwords(tokens: list[str]) -> list[str]:
+    return [t for t in tokens if t not in STOPWORDS]
+
+
+# -------------------------
+# Normalização leve (SEM stemming agressivo)
+# -------------------------
+def normalizar(token: str) -> str:
+    # remove apenas plural simples com segurança
+
+    if len(token) <= 3:
+        return token
+
+    # remove plural apenas se for seguro
+    if token.endswith("s") and not token.endswith("es") and len(token) > 4:
+        token = token[:-1]
+
     return token
 
 
-def _tokenizar(texto: str) -> list[str]:
-    import re
-    return re.findall(r"[a-záéíóúâêîôûãõç]+|\d+", texto.lower())
+# -------------------------
+# Aplicar normalização
+# -------------------------
+def aplicar_normalizacao(tokens: list[str]) -> list[str]:
+    return [normalizar(t) for t in tokens]
 
 
+# -------------------------
+# Pipeline principal
+# -------------------------
 def preprocessar(texto: str) -> list[str]:
-    tokens = _tokenizar(texto)
-    tokens = [t for t in tokens if t not in STOPWORDS]
-    tokens = [_stemmer(t) for t in tokens]
+    tokens = tokenizar(texto)
+    tokens = remover_stopwords(tokens)
+    tokens = aplicar_normalizacao(tokens)
     return tokens
+
+
+# -------------------------
+# Teste rápido opcional
+# -------------------------
+if __name__ == "__main__":
+    exemplos = [
+        "Dor no peito e falta de ar há 2 dias",
+        "Paciente relata dores fortes no joelho esquerdo",
+        "Apresenta náuseas e vômitos desde ontem",
+        "Falta de ar e dor no peito ao caminhar",
+        "Tontura e dor de cabeça persistente"
+    ]
+
+    for e in exemplos:
+        print(e)
+        print(preprocessar(e))
+        print("-" * 40)
