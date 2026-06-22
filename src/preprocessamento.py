@@ -1,5 +1,14 @@
 import re
+
+import snowballstemmer
+
 from src.stopwords import STOPWORDS
+
+
+# Stemmer oficial de Snowball para português (algoritmo de Porter para PT-BR).
+# Resolve plurais e variações de flexão sem cortes ingênuos:
+#   dores -> dor | palpitações -> palpit | manchas -> manch | após -> após
+_STEMMER = snowballstemmer.stemmer("portuguese")
 
 
 # -------------------------
@@ -18,19 +27,10 @@ def remover_stopwords(tokens: list[str]) -> list[str]:
 
 
 # -------------------------
-# Normalização leve (segura para dataset médico)
+# Normalização (stemming de português via Snowball)
 # -------------------------
 def normalizar(token: str) -> str:
-    if len(token) <= 3:
-        return token
-
-    # plural leve (conservador)
-    if token.endswith("es") and len(token) > 4:
-        return token[:-2]
-    if token.endswith("s") and len(token) > 3:
-        return token[:-1]
-
-    return token
+    return _STEMMER.stemWord(token)
 
 
 # -------------------------
@@ -40,4 +40,4 @@ def preprocessar(texto: str) -> list[str]:
     tokens = tokenizar(texto)
     tokens = remover_stopwords(tokens)
     tokens = [normalizar(t) for t in tokens]
-    return tokens
+    return [t for t in tokens if t]
