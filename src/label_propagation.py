@@ -9,7 +9,7 @@ from .grafo import Grafo
 class LabelPropagation:
     def __init__(self):
         self.scores: dict[str, dict[str, float]] = {}
-        self.historico: list[dict[str, dict[str, float]]] = []
+        self.historico_scores: list[dict[str, dict[str, float]]] = []
         self._fixos: set[str] = set()
 
     def fit(
@@ -32,7 +32,7 @@ class LabelPropagation:
             if v not in self.scores:
                 self.scores[v] = {}
 
-        self.historico.append({v: dict(s) for v, s in self.scores.items()})
+        self.historico_scores.append({v: dict(s) for v, s in self.scores.items()})
 
         for iteracao in range(max_iter):
             novos_scores: dict[str, dict[str, float]] = {}
@@ -61,7 +61,7 @@ class LabelPropagation:
                     variacao_max = max(variacao_max, diff)
 
             self.scores = novos_scores
-            self.historico.append({v: dict(s) for v, s in self.scores.items()})
+            self.historico_scores.append({v: dict(s) for v, s in self.scores.items()})
 
             if variacao_max < epsilon:
                 print(f"Convergiu em {iteracao + 1} iterações.")

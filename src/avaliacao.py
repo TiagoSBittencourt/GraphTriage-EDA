@@ -65,6 +65,16 @@ def imprimir_relatorio(metricas: dict) -> None:
     print("Por categoria:")
     for cat, acc in metricas["acuracia_por_categoria"].items():
         print(f"  {cat:<20}: {acc:.1%}")
+
+    print("\nMatriz de confusão:")
+    matriz = metricas["matriz_confusao"]
+    cats = list(matriz.keys())
+    col_w = max(8, max(len(c) for c in cats))
+    print(" " * (col_w + 2) + "".join(f"{c:>{col_w}}" for c in cats))
+    for real in cats:
+        valores = "".join(f"{matriz[real].get(prev, 0):>{col_w}}" for prev in cats)
+        print(f"  {real:<{col_w}}{valores}")
+
     print("\nErros mais confiantes:")
     for e in metricas["erros_confiantes"]:
         print(f"  {e['id']} → previsto: {e['previsto']} ({e['confianca']:.2f}) | real: {e['real']}")
