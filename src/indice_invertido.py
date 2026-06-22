@@ -39,3 +39,22 @@ class IndiceInvertido:
 
     def termos(self) -> list[str]:
         return list(self._indice.keys())
+
+    def top_termos_por_categoria(
+        self, rotulos: dict[str, str], n: int = 10
+    ) -> dict[str, list[tuple[str, int]]]:
+        por_cat: dict[str, dict[str, int]] = {}
+        for termo in self._indice:
+            for cat, contagem in self.contagem_por_categoria(termo, rotulos).items():
+                por_cat.setdefault(cat, {})[termo] = contagem
+        return {
+            cat: sorted(termos.items(), key=lambda x: x[1], reverse=True)[:n]
+            for cat, termos in por_cat.items()
+        }
+
+    def imprimir_top_termos(self, rotulos: dict[str, str], n: int = 10) -> None:
+        print(f"\n=== Top {n} termos por categoria ===")
+        for cat, termos in self.top_termos_por_categoria(rotulos, n).items():
+            print(f"\n  {cat}:")
+            for termo, contagem in termos:
+                print(f"    {termo:<20}: {contagem} doc(s)")

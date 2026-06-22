@@ -27,6 +27,7 @@ def main():
 
     indice = IndiceInvertido()
     indice.construir(todos)
+    indice.imprimir_top_termos(rotulos_treino)
 
     grafo = construir_grafo(todos, rotulos_treino, indice)
     print(grafo)
