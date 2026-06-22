@@ -1,0 +1,22 @@
+[
+  {"id": "U001", "categoria_real": "Neurologia"},
+  {"id": "U002", "categoria_real": "Cardiologia"},
+  {"id": "U003", "categoria_real": "Ortopedia"},
+  {"id": "U004", "categoria_real": "Neurologia"},
+  {"id": "U005", "categoria_real": "Cardiologia"},
+  {"id": "U006", "categoria_real": "Dermatologia"},
+  {"id": "U007", "categoria_real": "Gastroenterologia"},
+  {"id": "U008", "categoria_real": "Ortopedia"},
+  {"id": "U009", "categoria_real": "Dermatologia"},
+  {"id": "U010", "categoria_real": "Gastroenterologia"},
+  {"id": "U011", "categoria_real": "Gastroenterologia"},
+  {"id": "U012", "categoria_real": "Cardiologia"},
+  {"id": "U013", "categoria_real": "Gastroenterologia"},
+  {"id": "U014", "categoria_real": "Dermatologia"},
+  {"id": "U015", "categoria_real": "Neurologia"},
+  {"id": "U016", "categoria_real": "Ortopedia"},
+  {"id": "U017", "categoria_real": "Cardiologia"},
+  {"id": "U018", "categoria_real": "Ortopedia"},
+  {"id": "U019", "categoria_real": "Dermatologia"},
+  {"id": "U020", "categoria_real": "Neurologia"}
+]
