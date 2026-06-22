@@ -7,6 +7,7 @@ from src.indice_invertido import IndiceInvertido
 from src.construtor_grafo import construir_grafo
 from src.label_propagation import LabelPropagation
 from src.avaliacao import holdout_split, avaliar, imprimir_relatorio
+from src.visualizacao import plotar_grafo, plotar_evolucao_scores, plotar_heatmap_scores
 
 
 def carregar_corpus(caminho: str = "data/corpus.json") -> list[dict]:
@@ -64,6 +65,18 @@ def main():
         print("\n####### QUEIXAS AMBÍGUAS (gabarito U*) #######")
         metricas_amb = avaliar(lp, docs_ambiguos)
         imprimir_relatorio(metricas_amb)
+
+    # --- Visualizações (issue #8) ---
+    print("\n=== Gerando visualizações ===")
+    categorias = sorted(set(rotulos_treino.values()))
+
+    plotar_grafo(grafo, indice, rotulos_treino, top_termos=5)
+
+    doc_exemplo = nao_rotulados[0]["id"]
+    plotar_evolucao_scores(lp.historico_scores, doc_exemplo, categorias)
+
+    ids_nao_rotulados = [d["id"] for d in nao_rotulados]
+    plotar_heatmap_scores(lp, ids_nao_rotulados, categorias)
 
 
 if __name__ == "__main__":
