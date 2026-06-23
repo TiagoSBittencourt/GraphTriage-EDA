@@ -3,6 +3,8 @@
 Issue: #4
 """
 
+import math
+
 from .preprocessamento import preprocessar
 
 
@@ -10,8 +12,11 @@ class IndiceInvertido:
     def __init__(self):
         # termo → { doc_id: frequência }
         self._indice: dict[str, dict[str, int]] = {}
+        # nº total de documentos indexados (para o cálculo do IDF)
+        self._n_documentos: int = 0
 
     def construir(self, documentos: list[dict]) -> None:
+        self._n_documentos = len(documentos)
         for doc in documentos:
             tokens = preprocessar(doc["texto"])
             for token in tokens:
@@ -26,6 +31,21 @@ class IndiceInvertido:
 
     def frequencia_no_doc(self, termo: str, doc_id: str) -> int:
         return self._indice.get(termo, {}).get(doc_id, 0)
+
+    def frequencia_documento(self, termo: str) -> int:
+        """Nº de documentos distintos que contêm o termo (document frequency)."""
+        return len(self._indice.get(termo, {}))
+
+    def idf(self, termo: str) -> float:
+        """
+        Inverse Document Frequency suavizado.
+
+        Termos genéricos (ex.: "dor"), presentes em muitos documentos de várias
+        categorias, recebem IDF baixo; termos discriminativos (ex.: "palpit")
+        recebem IDF alto. Usado para ponderar as arestas Termo↔Categoria.
+        """
+        df = self.frequencia_documento(termo)
+        return math.log((self._n_documentos + 1) / (df + 1)) + 1.0
 
     def contagem_por_categoria(
         self, termo: str, rotulos: dict[str, str]

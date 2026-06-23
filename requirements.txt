@@ -1,2 +1,9 @@
-matplotlib
-snowballstemmer
+# Dependências do GraphTriage-EDA
+# Python 3.10+ (usa type hints com | e dict[str, ...])
+#
+# Apenas para visualização (matplotlib) e stemming em português
+# (snowballstemmer). O grafo, o índice invertido e o Label Propagation
+# são implementados do zero, sem bibliotecas de grafos/ML.
+
+matplotlib>=3.8
+snowballstemmer>=2.2

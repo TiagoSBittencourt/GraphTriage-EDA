@@ -33,12 +33,16 @@ def construir_grafo(
                 g.adicionar_aresta(doc["id"], termo, peso=float(freq))
                 n_doc_termo += 1
 
-    # Aresta Termo↔Categoria (peso = nº de docs da categoria com o termo)
+    # Aresta Termo↔Categoria
+    # peso = (nº de docs da categoria com o termo) × IDF(termo)
+    # O fator IDF reduz a influência de termos genéricos (ex.: "dor"), que
+    # aparecem em muitas categorias, e valoriza termos discriminativos.
     n_termo_cat = 0
     for termo in indice.termos():
+        idf = indice.idf(termo)
         for cat, contagem in indice.contagem_por_categoria(termo, rotulos).items():
             if contagem > 0:
-                g.adicionar_aresta(termo, cat, peso=float(contagem))
+                g.adicionar_aresta(termo, cat, peso=float(contagem) * idf)
                 n_termo_cat += 1
 
     # Aresta Documento↔Categoria (peso = 1.0, apenas rotulados)
