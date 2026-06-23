@@ -375,6 +375,9 @@ Geradas por [`visualizacao.py`](src/visualizacao.py) e salvas em `docs/plots/`:
 | [`evolucao_scores.png`](docs/plots/evolucao_scores.png) | scores de um documento ao longo das iterações até convergir            |
 | [`heatmap_scores.png`](docs/plots/heatmap_scores.png)   | scores finais das queixas `U*` por categoria, com a predição destacada |
 
+> A descrição detalhada de cada gráfico e as conclusões extraídas estão em
+> **[`docs/plots/README.md`](docs/plots/README.md)**.
+
 ---
 
 ## 9. Testes
