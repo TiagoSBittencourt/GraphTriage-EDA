@@ -1,12 +1,25 @@
-# GraphTriage-EDA
+<div align="center">
 
-**Classificação textual baseada em representações relacionais em grafos.**
+# 🩺 GraphTriage
 
-Sistema de triagem automática de queixas médicas que classifica textos livres de
-pacientes na **especialidade médica** apropriada (Cardiologia, Ortopedia,
-Neurologia, Dermatologia, Gastroenterologia) usando um **grafo tripartite** e o
-algoritmo de **Label Propagation**, ambos implementados do zero, sem bibliotecas
-de grafos ou de aprendizado de máquina.
+**Triagem médica automática por classificação textual baseada em grafos.**
+
+<img src="assets/logo.png" alt="GraphTriage Logo" width="200" style="border-radius: 20px;" />
+
+<br />
+
+Classifica queixas de pacientes em texto livre na **especialidade médica** correta
+(Cardiologia · Ortopedia · Neurologia · Dermatologia · Gastroenterologia) usando um
+**grafo tripartite** e **Label Propagation** — ambos implementados do zero, sem
+bibliotecas de grafos ou de aprendizado de máquina.
+
+<br />
+
+[Problema](#1-definição-do-problema) • [Dados](#2-dados) • [Implementação](#3-implementação-da-solução) • [Algoritmos](#4-algoritmos-em-grafos-implementados-pelo-grupo) • [Como executar](#5-como-executar) • [Resultados](#7-análise-e-interpretação-dos-resultados) • [Visualizações](#8-visualizações)
+
+</div>
+
+---
 
 > Trabalho da disciplina de Estruturas de Dados e Algoritmos (EDA).
 > Tema do grupo: *implementar um sistema de classificação textual baseado em
