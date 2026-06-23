@@ -417,25 +417,3 @@ avaliação.
 - **Apoio ao desenvolvimento.** LLM foi usado como apoio em revisão de código e
   documentação. **Os algoritmos centrais — grafo, índice invertido e Label
   Propagation — foram implementados pelo grupo, sem bibliotecas prontas.**
-
----
-
-## 11. Equipe e contribuições
-
-| Integrante                | Contribuição principal                                                     |
-|---------------------------|-----------------------------------------------------------------------------|
-| **Tiago Bittencourt**     | corpus/dataset, índice invertido, construção do grafo, Label Propagation, pipeline e refinamento de acurácia (IDF) |
-| **Bernardo Broetto Brun** | módulo de pré-processamento (tokenização, stopwords, stemming) e estrutura de dados Grafo |
-| **João Carvalho**         | módulo de avaliação e métricas (holdout, acurácia, matriz de confusão)     |
-| **Cadu Motta**            | visualizações do grafo e da propagação (matplotlib)                        |
-
-> Mapeamento derivado do histórico do repositório (issues #1–#8). Ajuste conforme
-> a divisão final do grupo, se necessário.
-
----
-
-## 12. Stack técnica
-
-- **Python 3.10+** — núcleo (grafo, índice, Label Propagation) implementado do zero.
-- **snowballstemmer** — stemming em português.
-- **matplotlib** — visualizações.
